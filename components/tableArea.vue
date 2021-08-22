@@ -2,7 +2,8 @@
     <div>
         <table v-if="type == 'tableSuccseess'"  class="table">
             <tr class="table-header">
-                <th rowspan="2">id</th>
+                <th v-if="newNumber" rowspan="2">{{ newNumber }}</th>
+                <th v-else rowspan="2">id</th>
                 <th rowspan="2">name</th>
                 <th rowspan="2">username</th>
                 <th rowspan="2">email</th>
@@ -16,7 +17,8 @@
                 <th>catchPhrase</th>
                 <th>bs</th>
             </tr> 
-            <item v-for="item of successObjects" :key="item.id" :item="item"/>
+            <item v-for="item of successObjects" :key="item.id" :item="item" />
+            <button @click="btnClick" class="itemBtn">Изменить шапку "id"</button>
         </table>
         <p v-if="type == 'tableFailed'" class="error">Ошибка, запрос не отработан ({{errorObject.message}})</p>
     </div>
@@ -30,6 +32,18 @@ export default {
 
     components: { item },
 
+    data() {
+        return {
+            number: 5
+        }
+    },
+
+    methods: {
+        btnClick() {
+            this.$emit('clickItemComp', this.number);
+        }
+    },
+
     props: {
         type: {
             type: String,
@@ -40,6 +54,9 @@ export default {
         },
         errorObject: {
             type: String.value
+        },
+        newNumber: {
+            type: Number
         }
     }
 }

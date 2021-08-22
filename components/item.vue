@@ -11,6 +11,7 @@
         <td>{{item.company.catchPhrase}}</td>
         <td>{{item.company.bs}}</td>
     </tr>
+    
 </template>
 
 <script>
@@ -18,6 +19,10 @@ export default {
     props: {
         item: {
             type: Object
+        },
+        newNumber: {
+            type: String,
+            default: () => {}
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div class="container">
         <button @click="initTable()" class="btn">Получить данные</button>
-        <tableArea :type="typeCheckbox" :successObjects="successObjects" :errorObject="errorObject" />
+        <tableArea @clickItemComp="parentAction" :type="typeCheckbox" :successObjects="successObjects" :errorObject="errorObject" :newNumber="newNumber" />
     </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
             successObjects: [],
             errorObject: '',
             url: 'https://jsonplaceholder.typicode.com/users',
+            newNumber: null
         }
     },
 
@@ -26,6 +27,16 @@ export default {
                 .then(response => response.json())
                 .then(object => this.successObjects = object)
                 .catch(error => this.errorObject = error);
+        },
+
+        parentAction(num) {
+            this.newNumber += num + 661;
+        }
+    },
+
+    watch: {
+        newNumber(val) {
+            console.log(val);
         }
     },
 
