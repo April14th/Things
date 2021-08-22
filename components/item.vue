@@ -19,10 +19,6 @@ export default {
     props: {
         item: {
             type: Object
-        },
-        newNumber: {
-            type: String,
-            default: () => {}
         }
     }
 }
